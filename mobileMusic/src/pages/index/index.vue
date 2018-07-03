@@ -1,11 +1,13 @@
 <template>
   <div class="new">
     <v-header></v-header>
+    <v-list></v-list>
   </div>
 </template>
 
 <script>
 import header from '@/components/header'
+import list from '@/components/list'
 export default {
   data () {
     return {
@@ -14,7 +16,8 @@ export default {
   },
 
   components: {
-    "v-header": header
+    "v-header": header,
+    "v-list": list
 },
 
   methods: {

@@ -18,8 +18,9 @@ export default {
 </script>
 <style lang="stylus" scoped> 
     .header
+        position relative
         background-color #AEEEEE
-        height 400rpx
+        height 330rpx
         width 100%
         box-sizing border-box
         padding-top 25rpx        

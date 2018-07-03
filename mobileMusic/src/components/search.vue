@@ -30,10 +30,8 @@ export default {
 }
 </script>
 <style lang="stylus" scoped>
-.search
-    position relative
     .search-box
-        position fixed
+        position absolute
         top 10rpx
         z-index 10
         left 5%

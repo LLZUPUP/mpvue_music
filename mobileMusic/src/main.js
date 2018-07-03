@@ -24,13 +24,13 @@ export default {
       backgroundColor: "#AEEEEE",
       list: [
         {
-          "text": "新歌",
+          "text": "推荐",
           "pagePath": "pages/index/main",
           "iconPath": "static/assets/new.png",
           "selectedIconPath": "static/assets/new.png"
         },
         {
-          "text": "推荐",
+          "text": "新歌",
           "pagePath": "pages/recommend/main",
           "iconPath": "static/assets/recommend.png",
           "selectedIconPath": "static/assets/recommend.png"

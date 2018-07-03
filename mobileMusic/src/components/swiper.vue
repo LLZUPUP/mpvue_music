@@ -9,19 +9,29 @@
     </swiper>
 </template>
 <script>
-import fly from '@/utils/flyio'
+import {getBanner} from '@/api/recommend'
+import {ERR_OK} from '@/common/js/config'
 export default {
     data() {
         return {
             banners:[]
         }
     },
+    methods: {
+        _getBanner() {
+            getBanner().then(res=>{
+                console.log(res)
+                if(res.status === ERR_OK) {
+                    let list = res.data.data.banners;
+                    this.banners = list.splice(4)
+                }
+                
+            })
+        }
+    },
     created() {
-        fly.get("mobilemusic#!method=get").then((res)=>{
-            this.banners = res.data.data.banners;
-        console.log(this.banners)
-
-        })
+        
+        this._getBanner();
     }
 }
 </script>

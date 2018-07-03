@@ -23,7 +23,8 @@ export default {
         height 330rpx
         width 100%
         box-sizing border-box
-        padding-top 25rpx        
+        padding-top 25rpx      
+        margin-bottom 100rpx  
         
     
 </style>

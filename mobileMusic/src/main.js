@@ -1,5 +1,9 @@
 import Vue from 'vue'
 import App from './App'
+import fastclick from 'fastclick'
+
+
+fastclick.attach(document.body)
 
 Vue.config.productionTip = false
 App.mpType = 'app'

@@ -6,6 +6,7 @@
 </template>
 
 <script>
+ 
 import header from '@/components/header'
 import list from '@/components/list'
 export default {

@@ -40,7 +40,7 @@ export default {
                 if(res.status === ERR_OK) {
                     this.recommendList = res.data.data.result;
                 }else {
-                    console.error('获取推荐列表失败')
+                    console.error('获取推荐列表失败') //
                 }
             })
         },

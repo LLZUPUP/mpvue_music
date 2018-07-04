@@ -41,7 +41,6 @@ export default {
         height 50rpx
         font-size 30rpx
         overflow hidden
-        text-indent 2em
         box-sizing border-box
-        padding-left 20rpx
+        padding-left 60rpx
 </style>

@@ -6,3 +6,6 @@ export function getBanner() {
 export function getRecommendList() {
     return fly.get('/personalized#!method=get')
 }
+export function getRecommendMusic() {
+    return fly.get('/personalized/newsong#!method=get')
+}

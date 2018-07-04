@@ -1,4 +1,5 @@
 <template>
+<div>
     <div class="recommend-list">
         <h1 class="title">推荐歌单</h1>
         <ul>
@@ -9,7 +10,7 @@
                 </div>
                 <p class="play-count">
                     <i class="fa"></i>
-                    {{item.playCount}}万
+                    {{item.trackCount}}万
                 </p>
                 <div class="text">
                     <p class="name">{{item.name}}</p>
@@ -17,18 +18,36 @@
             </li>
         </ul>
     </div>
+    <div class="recommend-song">
+        <h1 class="title">推荐歌曲</h1>
+        <ul>
+            <li class="item" @click= "selectSong(item)" v-for="item in recommendMusic" :key="item.id">
+                <div class="icon" >
+                    <img :src="item.image"/>
+                </div>
+                <p class="text">{{item.name}}</p>
+                <p class="singer">{{item.singer}}</p>
+            </li>
+        </ul>
+    </div>
+</div>
+    
 </template>
 <script>
-import {getRecommendList} from '@/api/recommend'
+import {getRecommendList,getRecommendMusic} from '@/api/recommend'
 import {ERR_OK} from '@/common/js/config'
+import {createRecommendSong} from '@/common/js/song'
 export default {
     data() {
         return {
-            recommendList: []
+            recommendList: [],
+            recommendMusic: []
+           
         }
     },
     created() {
         this._getRecommendList()
+        this._getRecommendMusic()
     },
     computed:{
         
@@ -40,10 +59,24 @@ export default {
                 if(res.status === ERR_OK) {
                     this.recommendList = res.data.data.result;
                 }else {
-                    console.error('获取推荐列表失败') //
+                    console.error('获取推荐列表失败') 
                 }
             })
         },
+        _getRecommendMusic() {
+            getRecommendMusic().then((res)=>{
+                console.log(res)
+                if(res.status === ERR_OK) {
+                    let list = res.data.data.result.map((item)=>{
+                        return createRecommendSong(item)
+                    })
+                    list.splice(9)
+                    this.recommendMusic = list
+                }else {
+                    console.error('推荐歌曲列表获取失败')
+                }
+            })
+        }
         
     }
 }

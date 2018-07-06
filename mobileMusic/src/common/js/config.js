@@ -7,7 +7,7 @@ var fly = new Fly();
 //     config.headers["X-Tag"]="flyio";
 //     return config;
 // })
-fly.config.baseURL="https://www.easy-mock.com/mock/5af03acc957fd4308a30b9d8/api"
+fly.config.baseURL="http://localhost:3000"
 Vue.prototype.$http = fly;
 export const ERR_OK = 200
 

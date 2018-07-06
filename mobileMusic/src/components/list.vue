@@ -4,13 +4,13 @@
         <h1 class="title">推荐歌单</h1>
         <ul>
             <li class="item" v-for="item in recommendList" :key="item.id">
-                <div class="icon" @click="selectList(item)">
+                <div class="icon" @click="selectList(item.id)">
                     <div class="gradients"></div>
                     <img :src="item.picUrl"/>
                 </div>
                 <p class="play-count">
                     <i class="fa"></i>
-                    {{item.trackCount}}万
+                    {{item.playCount/10000 | currency}}万
                 </p>
                 <div class="text">
                     <p class="name">{{item.name}}</p>
@@ -53,11 +53,16 @@ export default {
         
     },
     methods: {
+        selectList(listId) {
+            wx.navigateTo({
+                url: '../list/main?id='+listId,
+            })
+        },
         _getRecommendList() {
             getRecommendList().then((res)=>{
                 console.log(res)
                 if(res.status === ERR_OK) {
-                    this.recommendList = res.data.data.result;
+                    this.recommendList = res.data.result;
                 }else {
                     console.error('获取推荐列表失败') 
                 }
@@ -67,7 +72,7 @@ export default {
             getRecommendMusic().then((res)=>{
                 console.log(res)
                 if(res.status === ERR_OK) {
-                    let list = res.data.data.result.map((item)=>{
+                    let list = res.data.result.map((item)=>{
                         return createRecommendSong(item)
                     })
                     list.splice(9)
@@ -106,7 +111,7 @@ export default {
                 display inline-block
                 position relative
                 width 100%
-                height 220rpx
+                height 235rpx
                 margin-bottom 10rpx
                 .gradients
                     position absolute
@@ -136,5 +141,48 @@ export default {
                 text-align left 
                 white-space wrap
                 font-size 25rpx
-                
+    .recommend-song
+        margin-top -40rpx
+        box-sizing border-box
+        width 100%
+        text-align center
+        .title
+            height 130rpx
+            line-height 130rpx
+            padding-left 1.5%
+            text-align left 
+            font-size 30rp
+            font-weight bold
+        .item
+            display inline-block
+            position relative
+            box-sizing border-box
+            width 33%
+            padding 0 1%
+            vertical-align top
+            .icon
+                position relative
+                display inline-block
+                width 100%
+                height 235rpx
+                margin-bottom 10rpx
+                img 
+                    width 100%
+                    height 100%
+                    border-radius 6rpx
+            .text
+                line-height 32rpx
+                text-align left 
+                height 32rpx
+                white-space nowrap
+                text-overflow ellipsis 
+                overflow hidden
+                font-size 25rpx
+            .singer
+                line-height 32rpx
+                margin-bottom 20rpx
+                text-align left
+                white-space wrap
+                font-size 25rpx
+                color #757575
 </style>

@@ -21,7 +21,7 @@ export default {
         _getBanner() {
             getBanner().then(res=>{
                 if(res.status === ERR_OK) {
-                    let list = res.data.data.banners;
+                    let list = res.data.banners;
                     this.banners = list.splice(4)
                 }else {
                     console.error('Banner 获取失败')

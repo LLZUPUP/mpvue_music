@@ -1,5 +1,13 @@
-import Vue from 'vue'
-import App from './index'
+import {currency} from '../../utils/currency.js'
+import Vue from 'vue';
+import Vuex from 'vuex';
+// import store from './store';
+import App from './index';
+Vue.use(Vuex);
+Vue.filter('currency',currency)
+const app = new Vue({
+    ...App,
+    // store
+});
 
-const app = new Vue(App)
-app.$mount()
+app.$mount();

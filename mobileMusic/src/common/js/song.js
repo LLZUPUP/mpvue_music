@@ -19,12 +19,12 @@ export default class Song {
     }
 
 }
-function singerName(arr) {  //定义获得推荐歌曲歌手名字函数
+function singerName(arr) {
     let name = []
     name = arr.map((item)=> {
         return item.name    //返回歌手名字
     })
-    return name
+    return name.join('/') 
 }
 export function createRecommendSong(music) {
     return new Song({
@@ -33,5 +33,14 @@ export function createRecommendSong(music) {
         name: music.name,
         album: music.song.album.name,
         image: music.song.album.picUrl
+    })
+}
+export function createRecommendListSong(music) {
+    return new Song({
+        id: music.id,
+        singer:singerName(music.ar),
+        name: music.name,
+        album: music.al.name,
+        image: music.al.picUrl
     })
 }

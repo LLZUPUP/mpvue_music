@@ -21,7 +21,7 @@
                     </div>
                     <div class="song-list">
                         <ul>
-                            <li v-for="(song,index) in getListDetail" :key="index" class="item" >
+                            <li v-for="(song,index) in getListDetail" :key="index" class="item" @click="selectItem(song, index)">
                                 <p class="count">{{index+1}}</p>
                                 <div class="content">
                                     <h2 class="name">{{song.name}}</h2>
@@ -37,6 +37,7 @@
     </div>
 </template>
 <script>
+import {mapActions} from 'vuex'
 import {getRecommendList,getRecommendListDetail} from '@/api/recommend'
 import {createRecommendListSong} from '@/common/js/song.js'
 import {ERR_OK} from '@/common/js/config.js'
@@ -54,7 +55,7 @@ export default {
         bgStyle() {
             return `background-image: url(${this.getRecommendList.picUrl})`
         },
-        playCount() {
+        playCount() { //播放次数
             if(!this.getRecommendList.playCount) return;
             if(this.getRecommendList.playCount < 1e5) {
                 return Math.floor(this.getRecommendList.playCount)
@@ -65,8 +66,20 @@ export default {
         
     },
     methods: {
+        selectItem(item, index) {
+          wx.navigateTo({
+            url:`../player/main?id=${item.id}&name=${item.name}&singer=${item.singer}&image=${item.image}`
+          })
+          this.selectPlay({
+            list: this.getListDetail,
+            index: index
+          })
+        },
         sequence() {
-
+          let list = this.getListDetail
+          this.sequencePlay({
+            list: list
+          })
         },
         _getRecommendListDetail(id){
             getRecommendListDetail(id).then(res=>{
@@ -79,7 +92,11 @@ export default {
                 }
                 console.log(this.getListDetail)
             })
-        }
+        },
+        ...mapActions([
+          'selectPlay',
+          'sequencePlay'
+        ])
     },
     onLoad(options){
         getRecommendList().then(res=>{

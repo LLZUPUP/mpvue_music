@@ -9,6 +9,6 @@ const app = new Vue({
 app.$mount()
 export default {
     config: {
-        navigationBarTitleText: '歌单'
+        navigationBarTitleText: '歌曲'
     }
 }

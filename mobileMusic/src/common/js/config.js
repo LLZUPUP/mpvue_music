@@ -12,8 +12,8 @@ Vue.prototype.$http = fly;
 export const ERR_OK = 200
 
 export const playMode = {
-    sequence: 0,
-    loop: 1,
-    random: 2
+    sequence: 0,  //顺序播放
+    loop: 1,    //单曲循环
+    random: 2   //随机播放
 }
 export default fly;
